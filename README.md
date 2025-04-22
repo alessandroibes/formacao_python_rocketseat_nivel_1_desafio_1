@@ -5,7 +5,7 @@ Neste projeto, foi desenvolvido uma agenda para salvar, editar, deletar e marcar
 ### Regras da aplicação
 
 - [✓] A aplicação deve iniciar mostrando uma lista de opções do que é possível fazer com o app e permitir que o usuário digite uma escolha para iniciar a aplicação.
-- [ ] Deve ser possível adicionar um contato
+- [✓] Deve ser possível adicionar um contato
     - O contato pode ter os dados:
     - Nome
     - Telefone

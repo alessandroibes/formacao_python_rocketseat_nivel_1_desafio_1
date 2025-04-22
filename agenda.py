@@ -1,3 +1,37 @@
+import re
+
+
+def validar_contato(nome, telefone, email, favorito):
+    padrao_email = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+
+    if len(nome) < 3:
+        print("Nome inválido!")
+        return False
+    if not telefone.isdigit():
+        print("Telefone inválido!")
+        return False
+    elif not re.match(padrao_email, email):
+        print("Email inválido!")
+        return False
+    elif favorito not in ["S", "N"]:
+        print("Favorito inválido!")
+        return False
+    
+    return True
+
+
+def adicionar_contato(agenda, nome, telefone, email, marcar_como_favorito = "N"):
+    if validar_contato(nome, telefone, email, marcar_como_favorito):
+        favorito = True if marcar_como_favorito == "S" else False
+        contato = { "nome": nome, "telefone": telefone, "email": email, "favorito": favorito }
+        agenda.append(contato)
+        print(f"Contato {nome} foi adicionado com sucesso!")
+    else:
+        print("Foi informado um valor inválido. Tente novamente!")
+
+    return
+
+
 agenda = []
 while True:
     print("\nMenu da Agenda de Contatos:")
@@ -13,7 +47,12 @@ while True:
 
     match escolha:
         case "1":
-            print("Funcionalidade ainda não implementada.")
+            nome = input("Digite o nome do contato (mínimo de 3 caracteres): ")
+            telefone = input("Digite o telefone do contato (apenas números): ")
+            email = input("Digite o email do contato (válido): ")
+            marcar_como_favorito = input("Deseja marcar este contato como favorito? [S/N]: ")
+
+            adicionar_contato(agenda, nome, telefone, email, marcar_como_favorito)
         
         case "2":
             print("Funcionalidade ainda não implementada.")
