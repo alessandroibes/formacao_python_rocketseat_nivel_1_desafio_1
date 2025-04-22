@@ -63,6 +63,20 @@ def editar_contato(agenda, indice_contato, nome, telefone, email, marcar_como_fa
     return
 
 
+def marcar_desmarcar_favorito(agenda, indice_contato):
+    indice_contato_ajustado = int(indice_contato) - 1
+
+    if indice_contato_ajustado >= 0 and indice_contato_ajustado < len(agenda):
+        novo_status = not agenda[indice_contato_ajustado]["favorito"]
+        acao = "marcado" if novo_status else "desmarcado"
+        agenda[indice_contato_ajustado]["favorito"] = novo_status
+        print(f"Contato {indice_contato} {acao} como favorito.")
+    else:
+        print("Índice do contato inválido.")
+
+    return
+
+
 agenda = []
 while True:
     print("\nMenu da Agenda de Contatos:")
@@ -98,7 +112,9 @@ while True:
             editar_contato(agenda, indice_contato, nome, telefone, email, marcar_como_favorito)
 
         case "4":
-            print("Funcionalidade ainda não implementada.")
+            visualizar_contatos(agenda)
+            indice_contato = input("Digite o número do contato que deseja marcar/desmarcar como favorito: ")
+            marcar_desmarcar_favorito(agenda, indice_contato)
 
         case "5":
             print("Funcionalidade ainda não implementada.")
