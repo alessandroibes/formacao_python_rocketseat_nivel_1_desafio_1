@@ -44,6 +44,25 @@ def visualizar_contatos(agenda):
     return
 
 
+def editar_contato(agenda, indice_contato, nome, telefone, email, marcar_como_favorito = "N"):
+    indice_contato_ajustado = int(indice_contato) - 1
+
+    if indice_contato_ajustado >= 0 and indice_contato_ajustado < len(agenda):
+        if validar_contato(nome, telefone, email, marcar_como_favorito):
+            favorito = True if marcar_como_favorito == "S" else False
+            agenda[indice_contato_ajustado]["nome"] = nome
+            agenda[indice_contato_ajustado]["telefone"] = telefone
+            agenda[indice_contato_ajustado]["email"] = email
+            agenda[indice_contato_ajustado]["favorito"] = favorito
+            print(f"Contato {nome} foi atualizado com sucesso!")
+        else:
+            print("Foi informado um valor inválido. Tente novamente!")
+    else:
+        print("Índice do contato inválido.")
+        
+    return
+
+
 agenda = []
 while True:
     print("\nMenu da Agenda de Contatos:")
@@ -70,7 +89,13 @@ while True:
             visualizar_contatos(agenda)
 
         case "3":
-            print("Funcionalidade ainda não implementada.")
+            visualizar_contatos(agenda)
+            indice_contato = input("Digite o número do contato que deseja editar: ")
+            nome = input("Digite o novo nome do contato (mínimo de 3 caracteres): ")
+            telefone = input("Digite o novo telefone do contato (apenas números): ")
+            email = input("Digite o novo email do contato (válido): ")
+            marcar_como_favorito = input("Deseja marcar este contato como favorito? [S/N]: ")
+            editar_contato(agenda, indice_contato, nome, telefone, email, marcar_como_favorito)
 
         case "4":
             print("Funcionalidade ainda não implementada.")
