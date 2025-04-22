@@ -32,6 +32,18 @@ def adicionar_contato(agenda, nome, telefone, email, marcar_como_favorito = "N")
     return
 
 
+def visualizar_contatos(agenda):
+    print("\nLista de contatos cadastrados:")
+    for indice, contato in enumerate(agenda, start=1):
+        favorito = "✓" if contato["favorito"] else " "
+        nome = contato["nome"]
+        telefone = contato["telefone"]
+        email = contato["email"]
+        print(f"{indice}. Nome: {nome} | Telefone: {telefone} | Email: {email} | Favorito: [{favorito}]")
+    
+    return
+
+
 agenda = []
 while True:
     print("\nMenu da Agenda de Contatos:")
@@ -55,7 +67,7 @@ while True:
             adicionar_contato(agenda, nome, telefone, email, marcar_como_favorito)
         
         case "2":
-            print("Funcionalidade ainda não implementada.")
+            visualizar_contatos(agenda)
 
         case "3":
             print("Funcionalidade ainda não implementada.")
