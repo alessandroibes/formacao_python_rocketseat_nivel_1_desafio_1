@@ -91,6 +91,19 @@ def visualizar_contatos_favoritos(agenda):
     return
 
 
+def apagar_contato(agenda, indice_contato):
+    indice_contato_ajustado = int(indice_contato) - 1
+
+    if indice_contato_ajustado >= 0 and indice_contato_ajustado < len(agenda):
+        contato_removido = agenda.pop(indice_contato_ajustado)
+        print("O seguinte contato foi apagado:")
+        print(contato_removido)
+    else:
+        print("Índice do contato inválido.")
+
+    return
+
+
 agenda = []
 while True:
     print("\nMenu da Agenda de Contatos:")
@@ -134,7 +147,9 @@ while True:
             visualizar_contatos_favoritos(agenda)
 
         case "6":
-            print("Funcionalidade ainda não implementada.")
+            visualizar_contatos(agenda)
+            indice_contato = input("Digite o número do contato que deseja apagar: ")
+            apagar_contato(agenda, indice_contato)
 
         case "7":
             break
