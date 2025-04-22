@@ -77,6 +77,20 @@ def marcar_desmarcar_favorito(agenda, indice_contato):
     return
 
 
+def visualizar_contatos_favoritos(agenda):
+    print("\nLista de contatos favoritos:")
+    favoritos = lambda x: x["favorito"]
+
+    for indice, contato in enumerate(filter(favoritos, agenda), start=1):
+        favorito = "✓" if contato["favorito"] else " "
+        nome = contato["nome"]
+        telefone = contato["telefone"]
+        email = contato["email"]
+        print(f"{indice}. Nome: {nome} | Telefone: {telefone} | Email: {email} | Favorito: [{favorito}]")
+    
+    return
+
+
 agenda = []
 while True:
     print("\nMenu da Agenda de Contatos:")
@@ -117,7 +131,7 @@ while True:
             marcar_desmarcar_favorito(agenda, indice_contato)
 
         case "5":
-            print("Funcionalidade ainda não implementada.")
+            visualizar_contatos_favoritos(agenda)
 
         case "6":
             print("Funcionalidade ainda não implementada.")
